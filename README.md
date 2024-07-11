@@ -57,7 +57,7 @@ php artisan serve
 
 Testing the API
 - Use an API testing tool like Postman to interact with the API.
-
+- **URL** if using localhost: `http://localhost:8000/api`
 
 ### Endpoints
 
