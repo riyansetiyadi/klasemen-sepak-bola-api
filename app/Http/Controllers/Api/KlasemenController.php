@@ -43,7 +43,8 @@ class KlasemenController extends Controller
                 END) AS total_kebobolan,
                 SUM(
                     CASE
-                        WHEN hp.skor_tuan_rumah > hp.skor_tamu THEN 3
+                        WHEN hp.skor_tuan_rumah > hp.skor_tamu AND k.id = hp.klub_tuan_rumah_id THEN 3
+                        WHEN hp.skor_tuan_rumah < hp.skor_tamu AND k.id = hp.klub_tamu_id THEN 3
                         WHEN hp.skor_tuan_rumah = hp.skor_tamu THEN 1
                         ELSE 0
                     END
