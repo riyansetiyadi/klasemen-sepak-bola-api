@@ -14,7 +14,13 @@ class HasilPertandinganController extends Controller
     public function index()
     {
         //get posts
-        $hasilPertandingan = DB::select('SELECT hp.*, klub_tuan_rumah.nama AS klub_tuan_rumah_nama, klub_tamu.nama AS klub_tamu_nama FROM `hasil_pertandingans` hp JOIN klubs AS klub_tuan_rumah ON hp.klub_tuan_rumah_id = klub_tuan_rumah.id JOIN klubs AS klub_tamu ON hp.klub_tamu_id = klub_tamu.id;');
+        $hasilPertandingan = DB::select('
+            SELECT hp.*, klub_tuan_rumah.nama AS klub_tuan_rumah_nama, klub_tamu.nama AS klub_tamu_nama 
+            FROM `hasil_pertandingans` hp 
+            JOIN klubs AS klub_tuan_rumah ON hp.klub_tuan_rumah_id = klub_tuan_rumah.id 
+            JOIN klubs AS klub_tamu ON hp.klub_tamu_id = klub_tamu.id
+            ORDER BY hp.created_at DESC;
+        ');
 
         //return collection of posts as a resource
         return new PostResource(true, 'List Hasil Pertandingan', $hasilPertandingan);
